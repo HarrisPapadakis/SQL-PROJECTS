@@ -1,0 +1,6 @@
+SELECT title, rental_duration
+FROM film
+WHERE rental_duration < (
+    SELECT AVG(rental_duration)
+    FROM film
+);
