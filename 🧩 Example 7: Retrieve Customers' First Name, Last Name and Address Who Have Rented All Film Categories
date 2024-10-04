@@ -1,0 +1,16 @@
+SELECT c.first_name, c.last_name, a.address
+FROM customer c
+JOIN address a ON c.address_id = a.address_id
+WHERE NOT EXISTS (
+    SELECT category_id
+    FROM category
+    WHERE category_id NOT IN (
+        SELECT film_category.category_id 
+        FROM rental
+        JOIN inventory ON rental.inventory_id = inventory.inventory_id
+        JOIN film ON inventory.film_id = film.film_id
+        JOIN film_category ON film.film_id = film_category.film_id
+        WHERE rental.customer_id = c.customer_id
+    )
+);
+
