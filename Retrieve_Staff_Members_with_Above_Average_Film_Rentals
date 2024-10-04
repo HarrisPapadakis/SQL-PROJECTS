@@ -1,0 +1,15 @@
+SELECT 
+    s.staff_id,
+    s.first_name,
+    s.last_name,
+    COUNT(r.staff_id) AS Rental_Count
+FROM staff s
+JOIN rental r ON s.staff_id = r.staff_id
+GROUP BY s.staff_id, s.first_name, s.last_name
+HAVING COUNT(r.staff_id) > 
+(SELECT AVG(Rental_Count) 
+ FROM (SELECT COUNT(r.staff_id) 
+       AS Rental_Count 
+       FROM rental r
+       GROUP BY r.staff_id) AS subquery)
+ORDER BY Rental_Count DESC;
