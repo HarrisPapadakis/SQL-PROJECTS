@@ -1,0 +1,4 @@
+SELECT teams.team_name, SUM(matches.goals) as total_goals
+FROM teams
+JOIN matches ON teams.team_id = matches.team_id
+GROUP BY teams.team_name;
