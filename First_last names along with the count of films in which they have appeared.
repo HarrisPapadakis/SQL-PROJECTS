@@ -1,0 +1,6 @@
+SELECT actor.first_name, actor.last_name AS Actor, COUNT(film_actor.film_id) AS Number_of_Films
+FROM film_actor
+JOIN actor
+ON film_actor.actor_id = actor.actor_id
+GROUP BY actor.first_name, actor.last_name
+ORDER BY Number_of_Films DESC;
