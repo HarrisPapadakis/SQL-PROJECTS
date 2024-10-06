@@ -1,0 +1,5 @@
+SELECT first_name ,last_name, owns_car, state
+FROM reatcodeltd_axldp_Customer_Demographic d 
+JOIN  reatcodeltd_axldp_Customer_Address a ON d.customer_id = a.customer_id
+WHERE state = "VIC" and owns_car = "YES"
+LIMIT 10;
